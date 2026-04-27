@@ -135,6 +135,24 @@ class Account:
                 amounts.append(-trans["amount"])
         return amounts
     
+    def __str__(self) -> str:
+        """Return readable string representation of the account."""
+        return f"Account({self.account_id}): {self.owner_name} | Balance: ${self.balance:.2f} | Transactions: {len(self.transaction_history)}"
+    
+    def __add__(self, other: 'Account') -> float:
+        """
+        Operator overload for +: returns combined balance of two accounts.
+        
+        Args:
+            other: Another Account object
+            
+        Returns:
+            float: Sum of both account balances
+        """
+        if not isinstance(other, Account):
+            return NotImplemented
+        return self.balance + other.balance
+    
     def __repr__(self) -> str:
         """Return developer-friendly string representation."""
         return f"Account('{self.account_id}', '{self.owner_name}', {self.balance})"
