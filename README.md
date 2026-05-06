@@ -73,8 +73,8 @@ banking-fraud-detection/
 | `visualizer.py`            | Matplotlib plots for transaction history and balance comparison         |
 | `test_fraud_detector.py`   | Pytest test suite for `FraudDetector` and `data_io`                     |
 | `test_account.py`          | Pytest test suite for `Account` class                                   |
-| `test_my_generator`        | Pytest test suite for `Transaction Simular` class                       |
-| `test_my_visualizer`       | Pytest test suite for 'Visualizer' class                                |
+| `test_my_generator.py`        | Pytest test suite for `Transaction Simulator` class                       |
+| `test_my_visualizer.py`       | Pytest test suite for 'Visualizer' class                                |
   
 ---
 
