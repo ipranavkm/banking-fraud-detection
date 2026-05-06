@@ -1,10 +1,10 @@
 # Banking Fraud Detection System
 
 ## Team Members
-| Name | Email |
-|---|---|
-| Pranav Itikarlapalli | pitikarl@stevens.edu |20038694
-| Ishaan Bhalodia | ishaanbhalodia10@gmail.com |20040591
+| Name | Email | Student ID | 
+|---|---|---|
+| Pranav Itikarlapalli | pitikarl@stevens.edu |20038694 |
+| Ishaan Bhalodia | ishaanbhalodia10@gmail.com |20040591 | 
 
 ---
 
