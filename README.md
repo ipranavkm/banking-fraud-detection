@@ -158,7 +158,7 @@ loaded = load_transactions_from_csv("data/transactions.csv")
 - Operator overloading (`__add__`, `__str__`, `__repr__`)
 - Transaction simulation generator
 - Visualization module
-- Added unit tests for Account, Generator and Visulaizer 
+- Added unit tests for Account, Generator and Visualizer 
 
 ### Ishaan Bhalodia
 - `FraudDetector` class with z-score statistical analysis
