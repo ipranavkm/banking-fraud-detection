@@ -52,7 +52,7 @@ class FraudDetector:
         self.min_history = min_history
         self.flagged_transactions: List[Dict[str, Any]] = []
 
-        # ------------ Fraud Detection Methods ------------------
+    # ------------ Fraud Detection Methods ------------------
 
     def analyze_transaction(self, account: Account, amount: float) -> bool:
         """
@@ -79,7 +79,11 @@ class FraudDetector:
         if not isinstance(amount, (int, float)) or amount <= 0:
             raise InvalidTransactionError(f"Transaction must be a positive number, got {amount}")
 
-        history = account.get_transaction_amounts()
+        # Only use deposits as baseline — excludes initial deposit, withdrawals, and transfers
+        history = [
+            t["amount"] for t in account.transaction_history
+            if t["type"] not in ("initial_deposit", "withdrawal", "transfer_out", "transfer_in")
+        ]
 
         if len(history) < self.min_history:
             raise InsufficientDataError(f"Account {account.account_id} has only {len(history)} transaction(s); "
@@ -122,23 +126,30 @@ class FraudDetector:
 
         if not isinstance(account, Account):
             raise TypeError(f"Expected Account instance, got {type(account).__name__}")
-
-        history = account.get_transaction_amounts()
-
+ 
+        # Only use deposits as baseline — excludes initial deposit, withdrawals, and transfers
+        history = [
+            t["amount"] for t in account.transaction_history
+            if t["type"] not in ("initial_deposit", "withdrawal", "transfer_out", "transfer_in")
+        ]
+ 
         if len(history) < self.min_history:
-            raise InsufficientDataError(f"Account {account.account_id} needs at least {self.min_history} "
-                                        f"transactions for a full analysis.")
-
+            raise InsufficientDataError(
+                f"Account {account.account_id} needs at least {self.min_history} "
+                f"transactions for a full analysis."
+            )
+ 
         mean = float(np.mean(history))
         std = float(np.std(history))
         flagged = []
-
+ 
         for amount in history:
             if std > 0:
                 z = abs((amount - mean) / std)
                 if z > self.threshold:
                     flagged.append(amount)
-
+                    self._record_flag(account, amount, mean, std)
+ 
         return {
             "account_id": account.account_id,
             "owner": account.owner_name,
@@ -149,7 +160,7 @@ class FraudDetector:
             "max": round(float(np.max(history)), 2),
             "flagged_amounts": flagged,
             "flagged_count": len(flagged),
-            }
+        }
 
     def get_flagged_transactions(self) -> List[Dict[str, Any]]:
         """
