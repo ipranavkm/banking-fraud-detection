@@ -26,9 +26,9 @@ class FraudDetector:
     If z-score exceeds the configured threshold, the transaction is flagged
 
     Attributes:
-        - threshold (float): Z-score threshold above which a transaction is flagged
-        - min_history (int): Minimum number of past transactions required for analysis
-        - flagged_transaction (List[Dict]): A list of dictionaries that store all flagged transactions
+    - threshold (float): Z-score threshold above which a transaction is flagged
+    - min_history (int): Minimum number of past transactions required for analysis
+    - flagged_transaction (List[Dict]): A list of dictionaries that store all flagged transactions
     """
 
     def __init__(self, threshold: float = 2.0, min_history: int = 3):
@@ -36,11 +36,11 @@ class FraudDetector:
         Initialize the FraudDector
 
         Args:
-            threshold: Z-score cutoff for flagging (default 2.0).
-            min_history: Minimum transactions need before analysis (default 3)
+        -threshold: Z-score cutoff for flagging (default 2.0).
+        -min_history: Minimum transactions need before analysis (default 3)
 
         Raises:
-            ValueError: If threshold is not positive or min_history < 1
+        -ValueError: If threshold is not positive or min_history < 1
         '''
 
         if threshold <= 0:
