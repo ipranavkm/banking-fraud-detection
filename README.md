@@ -8,11 +8,15 @@
 
 ---
 
+## Project Overview 
+The Banking Fraud Detection System is a Python-based application that simulates real-world bank account operations and automatically detects suspicious transactions. The system allows users to create accounts, perform deposits, withdrawals, and transfers, and generates a full transaction history for each account. A dedicated `FraudDetector` class analyzes each transaction using z-score statistical analysis, comparing incoming amounts against an account's historical deposit baseline to identify anomalies. Transactions that deviate significantly from normal behavior are flagged and logged for review. Supporting modules handle CSV data persistence, live transaction stream simulation, and data visualization, making this a full end-to-end fraud detection pipeline.
+
+---
 ## Project Description
-This project simulates a banking transaction system with automated fraud detection. The system maintains account balances, records transaction histories, and detects suspicious activity using statistical anomaly detection (z-score analysis). Transactions that deviate significantly from a customer's normal behavior are flagged as potential fraud.
+This project simulates a banking transaction system with autmoated fraud detection. The system maintains account balances, records transaction histories, and deetects suspicious activity using statistical anomaly detection (z-score analysis). Transactions that deviate significantly from a customer's normal behavior are flagged as potential fraud.  
 
 ### Problem Solved
-Banks process millions of transactions daily. Manual fraud detection is impossible at scale. This system automatically identifies unusual transaction patterns that may indicate stolen credentials, account takeover, or money laundering — without requiring any labeled training data.
+Banks process millions of transactions daily. Manual fraud detection is impossible at scale. This system automatically identifies unusual transaction patterns that may indicate stolen credentials, account takeover, or money laundering, without requiring any labeled training data.
 
 ---
 
